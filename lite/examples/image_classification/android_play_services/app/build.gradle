@@ -15,7 +15,6 @@
  */
 
 apply plugin: "com.android.application"
-apply plugin: "kotlin-android"
 apply plugin: "de.undercouch.download"
 
 
@@ -46,23 +45,14 @@ android {
         targetCompatibility rootProject.ext.java_version
     }
 
-    kotlinOptions {
-        jvmTarget = rootProject.ext.java_version
-    }
-
     buildFeatures {
         viewBinding true
     }
 
     flavorDimensions 'language'
     productFlavors {
-        kotlin {
-            getIsDefault().set(true)
-            dimension 'language'
-            applicationIdSuffix ".kotlin"
-            versionNameSuffix "-kotlin"
-        }
         java {
+            getIsDefault().set(true)
             dimension 'language'
             applicationIdSuffix ".java"
             versionNameSuffix "-java"
@@ -83,7 +73,6 @@ android {
 }
 
 dependencies {
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 
     // App compat and UI things
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -101,9 +90,9 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha32"
 
     // Tensorflow Lite in Play Services dependencies
-    implementation "com.google.android.gms:play-services-tflite-gpu:16.1.1-eap03"
-    implementation "com.google.android.gms:play-services-tflite-java:16.0.2-eap03"
-    implementation "com.google.android.gms:play-services-tflite-support:16.0.2-eap03"
+    implementation 'com.google.android.gms:play-services-tflite-gpu:16.2.0'
+    implementation 'com.google.android.gms:play-services-tflite-java:16.1.0'
+    implementation 'com.google.android.gms:play-services-tflite-support:16.1.0'
 
     // Testing-only dependencies
     testImplementation 'org.robolectric:robolectric:4.4'
